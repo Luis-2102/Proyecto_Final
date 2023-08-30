@@ -3,6 +3,8 @@ package Interfaz;
 
 import Clases.Empleado_beans;
 import Clases.Producto_beans;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -39,6 +41,7 @@ public class FDM_empleado extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         btn_continuar = new javax.swing.JButton();
+        btn_producto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,58 +105,68 @@ public class FDM_empleado extends javax.swing.JFrame {
             }
         });
 
+        btn_producto.setFont(new java.awt.Font("Lucida Bright", 1, 13)); // NOI18N
+        btn_producto.setText("Agregar Producto");
+        btn_producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_productoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_nuevo)
-                                .addGap(32, 32, 32)
-                                .addComponent(bnt_eliminar)
-                                .addGap(28, 28, 28)
-                                .addComponent(bnt_guardar_empleado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_continuar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_idEmpleado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                                .addComponent(txt_idempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_nombres)
-                                    .addComponent(lbl_apellidos)
-                                    .addComponent(lbl_correo)
-                                    .addComponent(lbl_telefono))
-                                .addGap(79, 79, 79)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_nombre_empleado)
-                                    .addComponent(txt_apellido_empleado)
-                                    .addComponent(txt_correo_empleado)
-                                    .addComponent(txt_telefono_empleado, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))))))
+                        .addComponent(btn_nuevo)
+                        .addGap(32, 32, 32)
+                        .addComponent(bnt_eliminar)
+                        .addGap(28, 28, 28)
+                        .addComponent(bnt_guardar_empleado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_continuar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(56, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_idEmpleado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addComponent(txt_idempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_nombres)
+                            .addComponent(lbl_apellidos)
+                            .addComponent(lbl_correo)
+                            .addComponent(lbl_telefono))
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_nombre_empleado)
+                            .addComponent(txt_apellido_empleado)
+                            .addComponent(txt_correo_empleado)
+                            .addComponent(txt_telefono_empleado, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_producto)
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_idEmpleado)
-                            .addComponent(txt_idempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
+                            .addComponent(txt_idempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_producto))
+                        .addGap(39, 39, 39)
                         .addComponent(lbl_nombres))
                     .addComponent(txt_nombre_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_apellidos)
                     .addComponent(txt_apellido_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -173,7 +186,7 @@ public class FDM_empleado extends javax.swing.JFrame {
                     .addComponent(bnt_eliminar)
                     .addComponent(btn_continuar)
                     .addComponent(btn_nuevo))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,14 +210,29 @@ public class FDM_empleado extends javax.swing.JFrame {
 
     private void btn_continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_continuarActionPerformed
         // TODO add your handling code here:
-        FDM_Factura fdm = null;
-        try {
-            fdm = new FDM_Factura();
-        } catch (SQLException ex) {
-            Logger.getLogger(FDM_empleado.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        FDM_cliente fdm = null;
+        fdm = new FDM_cliente();
         fdm.setVisible(true);
     }//GEN-LAST:event_btn_continuarActionPerformed
+
+    private void btn_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_productoActionPerformed
+        FDM_producto fdmProducto = new FDM_producto();
+    fdmProducto.setVisible(true);
+    this.setVisible(false);
+    fdmProducto.addWindowListener(new WindowAdapter() {
+        @Override
+        public void windowClosed(WindowEvent e) {
+            FDM_cliente fdmCliente = new FDM_cliente();
+            fdmCliente.setVisible(true);
+            fdmCliente.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    setVisible(true);
+                }
+            });
+        }
+    });
+    }//GEN-LAST:event_btn_productoActionPerformed
 
     private void nuevo() {
         try {
@@ -294,6 +322,7 @@ public class FDM_empleado extends javax.swing.JFrame {
     private javax.swing.JButton bnt_guardar_empleado;
     private javax.swing.JButton btn_continuar;
     private javax.swing.JButton btn_nuevo;
+    private javax.swing.JButton btn_producto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable3;
     private javax.swing.JLabel lbl_apellidos;

@@ -9,7 +9,6 @@ public class Factura_beans {
     private int id_factura;
     private int id_empleado;
     private int id_cliente;
-    private int numero;
     private int fecha;
     private float subtotal;
     private float iva;
@@ -43,14 +42,6 @@ public class Factura_beans {
 
     public void setId_cliente(int id_cliente) {
         this.id_cliente = id_cliente;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
     }
 
     public int getFecha() {
@@ -88,7 +79,7 @@ public class Factura_beans {
     public int incremento_factura() throws SQLException {
         int inc = 0;
         ResultSet rs;
-        rs = fd.consultaBD("SELECT max(id_factura) as num FROM factura;");
+        rs = fd.consultaBD("SELECT max(ID__FACTURA) as num FROM factura;");
         if (rs.next()) {
             inc = rs.getInt(1) + 1;
         } else {
@@ -99,7 +90,7 @@ public class Factura_beans {
 
     public void insertar_factura() throws SQLException {
         try {
-            String cadena = "insert into factura values ('" + incremento_factura() + "','" + getId_empleado() + "','" + getId_cliente() + "','" + getNumero() + "','" + getFecha() + "','" + getSubtotal() + "','" + getIva() + "','" + getTotal() + "')";
+            String cadena = "insert into factura values ('" + incremento_factura() + "','" + getId_empleado() + "','" + getId_cliente() + "','"  + "','" + getFecha() + "','" + getSubtotal() + "','" + getIva() + "','" + getTotal() + "')";
             fd.actualizarBD(cadena);
         } catch (SQLException e) {
 
@@ -127,7 +118,6 @@ public class Factura_beans {
             System.out.print(rs.getInt(5) + "   ");
             System.out.print(rs.getFloat(6) + "   ");
             System.out.print(rs.getFloat(7) + "   ");
-            System.out.print(rs.getFloat(8) + "   ");
             System.out.println("");
         }
     }

@@ -288,8 +288,13 @@ public class FDM_cliente extends javax.swing.JFrame {
 
     private void Btn_ContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ContinuarActionPerformed
         // TODO add your handling code here:
-        FDM_producto fdmProducto = new FDM_producto();
-        fdmProducto.setVisible(true);
+        FDM_Factura fdmfactura = null;
+        try {
+            fdmfactura = new FDM_Factura();
+        } catch (SQLException ex) {
+            Logger.getLogger(FDM_cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        fdmfactura.setVisible(true);
     }//GEN-LAST:event_Btn_ContinuarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
