@@ -1,10 +1,8 @@
-
 package Clases;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 public class Cliente_beans {
     

@@ -62,7 +62,7 @@ public class Programa1 {
                                             });
                                         } catch (SQLException ex) {
                                             ex.printStackTrace();
-                                            // Manejar la excepción adecuadamente
+                                            
                                         }
                                     }
                                 });

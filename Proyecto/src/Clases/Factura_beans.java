@@ -9,10 +9,10 @@ public class Factura_beans {
     private int id_factura;
     private int id_empleado;
     private int id_cliente;
-    private int fecha;
-    private float subtotal;
-    private float iva;
-    private float total;
+    private String fecha;
+    private double subtotal;
+    private double iva;
+    private double total;
     private accesobd fd;
 
     public Factura_beans() {
@@ -44,35 +44,35 @@ public class Factura_beans {
         this.id_cliente = id_cliente;
     }
 
-    public int getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(int fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public float getSubtotal() {
+    public double getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(float subtotal) {
+    public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
 
-    public float getIva() {
+    public double getIva() {
         return iva;
     }
 
-    public void setIva(float iva) {
+    public void setIva(double iva) {
         this.iva = iva;
     }
 
-    public float getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
@@ -89,13 +89,13 @@ public class Factura_beans {
     }
 
     public void insertar_factura() throws SQLException {
-        try {
-            String cadena = "insert into factura values ('" + incremento_factura() + "','" + getId_empleado() + "','" + getId_cliente() + "','"  + "','" + getFecha() + "','" + getSubtotal() + "','" + getIva() + "','" + getTotal() + "')";
-            fd.actualizarBD(cadena);
-        } catch (SQLException e) {
-
-        }
+    try {
+        String cadena = "insert into factura values ('" + incremento_factura() + "','" + getId_empleado() + "','" + getId_cliente() + "','" + getFecha() + "','" + getSubtotal() + "','" + getIva() + "','" + getTotal() + "')";
+        fd.actualizarBD(cadena);
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+}
 
     public void eliminar_factura(String idFactura) throws SQLException {
 
@@ -121,6 +121,6 @@ public class Factura_beans {
             System.out.println("");
         }
     }
-    
-    
+
+
 }

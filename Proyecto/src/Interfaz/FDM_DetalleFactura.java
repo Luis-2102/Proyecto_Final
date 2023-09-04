@@ -3,11 +3,16 @@ package Interfaz;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
+import Clases.Detalle_beans;
+import Clases.Factura_beans;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 
 public class FDM_DetalleFactura extends javax.swing.JFrame {
-
 
     public FDM_DetalleFactura() {
         initComponents();
@@ -31,10 +36,10 @@ public class FDM_DetalleFactura extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lbl_nombre_empleado = new javax.swing.JLabel();
         lbl_fechaVenta = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txt_nombre_cliente = new javax.swing.JTextField();
+        txt_cedula_cliente = new javax.swing.JTextField();
+        txt_nombre_empleado = new javax.swing.JTextField();
+        txt_fecha_venta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -60,6 +65,7 @@ public class FDM_DetalleFactura extends javax.swing.JFrame {
         txt_iva_detalle = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
+        btn_llenar_datos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,21 +98,21 @@ public class FDM_DetalleFactura extends javax.swing.JFrame {
         lbl_fechaVenta.setFont(new java.awt.Font("Lucida Bright", 0, 13)); // NOI18N
         lbl_fechaVenta.setText("Fecha de Venta:");
 
-        jTextField1.setBorder(null);
+        txt_nombre_cliente.setBorder(null);
 
-        jTextField2.setBorder(null);
+        txt_cedula_cliente.setBorder(null);
 
-        jTextField3.setBorder(null);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombre_empleado.setBorder(null);
+        txt_nombre_empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txt_nombre_empleadoActionPerformed(evt);
             }
         });
 
-        jTextField4.setBorder(null);
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txt_fecha_venta.setBorder(null);
+        txt_fecha_venta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txt_fecha_ventaActionPerformed(evt);
             }
         });
 
@@ -126,11 +132,11 @@ public class FDM_DetalleFactura extends javax.swing.JFrame {
                         .addComponent(lbl_nombre_empleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_nombre_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_cedula_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_nombre_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_fecha_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,18 +149,18 @@ public class FDM_DetalleFactura extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_clientenombre)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_nombre_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_cedula_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_nombre_empleado)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_nombre_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_fecha_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_fechaVenta))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -265,6 +271,13 @@ public class FDM_DetalleFactura extends javax.swing.JFrame {
 
         jLabel11.setText("TOTAL");
 
+        btn_llenar_datos.setText("Imprimir");
+        btn_llenar_datos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_llenar_datosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -293,8 +306,11 @@ public class FDM_DetalleFactura extends javax.swing.JFrame {
                                         .addComponent(jLabel13)
                                         .addGap(78, 78, 78)
                                         .addComponent(txt_iva_detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btn_Salir)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_llenar_datos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_Salir)))
                         .addGap(61, 61, 61))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,61 +352,37 @@ public class FDM_DetalleFactura extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_total_detalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(23, 23, 23)
-                .addComponent(btn_Salir)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(btn_Salir)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_llenar_datos)
+                        .addGap(26, 26, 26))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txt_fecha_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fecha_ventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txt_fecha_ventaActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txt_nombre_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_empleadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txt_nombre_empleadoActionPerformed
 
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
  
         this.dispose();
     }//GEN-LAST:event_btn_SalirActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FDM_DetalleFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FDM_DetalleFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FDM_DetalleFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FDM_DetalleFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btn_llenar_datosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_llenar_datosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_llenar_datosActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FDM_DetalleFactura().setVisible(true);
-            }
-        });
-    }
     
     public JButton getBtn_Salir() {
         return btn_Salir;
@@ -398,8 +390,66 @@ public class FDM_DetalleFactura extends javax.swing.JFrame {
     private void cerrarLaInterfaz() {
         this.dispose(); 
     }
+    
+    private void mostrarDetallesFactura(int idFactura) {
+    // Crear una instancia de Factura_beans para manejar los detalles de la factura
+    Factura_beans facturaBeans = new Factura_beans();
+
+    try {
+        // Obtener los detalles de la factura desde la base de datos
+        ResultSet facturaResultSet = facturaBeans.consultaTabla("SELECT * FROM factura WHERE id_factura = " + idFactura);
+
+        // Verificar si se encontró la factura
+        if (facturaResultSet.next()) {
+            // Rellenar los campos de la interfaz con los detalles de la factura
+            txt_fecha.setText(facturaResultSet.getString("fecha"));
+            txt_nombre_cliente.setText(facturaResultSet.getString("nombre_cliente"));
+            txt_cedula_cliente.setText(facturaResultSet.getString("cedula_ruc"));
+            txt_nombre_empleado.setText(facturaResultSet.getString("nombre_empleado"));
+            txt_fecha_venta.setText(facturaResultSet.getString("fecha_venta"));
+            txt_Subtotal_Detalle.setText(String.valueOf(facturaResultSet.getDouble("subtotal")));
+            txt_iva_detalle.setText(String.valueOf(facturaResultSet.getDouble("iva")));
+            txt_total_detalle.setText(String.valueOf(facturaResultSet.getDouble("total")));
+
+            // Crear una instancia de Detalle_beans para manejar los detalles de productos
+            Detalle_beans detalleBeans = new Detalle_beans();
+            
+            // Obtener los detalles de productos asociados a esta factura desde la base de datos
+            ResultSet detalleResultSet = detalleBeans.consultaTabla("SELECT * FROM detalle_factura WHERE id_factura = " + idFactura);
+            
+            DefaultListModel<String> descripcionModel = new DefaultListModel<>();
+            DefaultListModel<String> cantidadModel = new DefaultListModel<>();
+            DefaultListModel<String> precioModel = new DefaultListModel<>();
+            DefaultListModel<String> totalModel = new DefaultListModel<>();
+            
+            // Iterar a través de los detalles de productos y agregarlos a los modelos
+            while (detalleResultSet.next()) {
+                descripcionModel.addElement(detalleResultSet.getString("descripcion"));
+                cantidadModel.addElement(String.valueOf(detalleResultSet.getInt("cantidad")));
+                precioModel.addElement(String.valueOf(detalleResultSet.getDouble("precio_uni")));
+                totalModel.addElement(String.valueOf(detalleResultSet.getDouble("pvp")));
+            }
+            
+            list_descripcion_detalle.setModel(descripcionModel);
+            list_Cantidad_detalle.setModel(cantidadModel);
+            list_precio_detalle.setModel(precioModel);
+            list_total_detalle.setModel(totalModel);
+        } else {
+            // Si no se encuentra la factura, muestra un mensaje de error
+            JOptionPane.showMessageDialog(null, "No se encontró la factura con ID: " + idFactura);
+        }
+    } catch (SQLException e) {
+        // Manejar cualquier error que ocurra al obtener los detalles
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error al obtener los detalles de la factura: " + e.getMessage());
+    }
+}
+
+        
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Salir;
+    private javax.swing.JButton btn_llenar_datos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -420,10 +470,6 @@ public class FDM_DetalleFactura extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel lbl_Nombre_local;
     private javax.swing.JLabel lbl_clientenombre;
     private javax.swing.JLabel lbl_fechaVenta;
@@ -433,8 +479,12 @@ public class FDM_DetalleFactura extends javax.swing.JFrame {
     private javax.swing.JList<String> list_precio_detalle;
     private javax.swing.JList<String> list_total_detalle;
     private javax.swing.JTextField txt_Subtotal_Detalle;
+    private javax.swing.JTextField txt_cedula_cliente;
     private javax.swing.JTextField txt_fecha;
+    private javax.swing.JTextField txt_fecha_venta;
     private javax.swing.JTextField txt_iva_detalle;
+    private javax.swing.JTextField txt_nombre_cliente;
+    private javax.swing.JTextField txt_nombre_empleado;
     private javax.swing.JTextField txt_total_detalle;
     // End of variables declaration//GEN-END:variables
 }

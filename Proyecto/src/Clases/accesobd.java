@@ -1,6 +1,4 @@
-
 package Clases;
-
 
 import java.sql.*;
 public class accesobd {
@@ -50,8 +48,8 @@ public class accesobd {
             Statement stm = conexion.createStatement();
             stm.executeUpdate(sql);
             System.out.println("Transaccion exitosa... siuuuuuu");
-        } catch(Exception e){
-            System.out.println("Error em la transaccion... Rollblack " );
+        } catch(SQLException e){
+            System.out.println("Error em la transaccion... Rollblack " + e.toString() );
         }
     }
     public ResultSet consultaBD(String sql)throws SQLException{
@@ -65,10 +63,6 @@ public class accesobd {
             conexion.close();
             System.out.println("Conexión cerrada");
         }
-    }
-
-    Object getConexion() {
-        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
 public PreparedStatement prepareStatement(String sql) throws SQLException {
